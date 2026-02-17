@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../../firebase';
 import { useCart } from '../../context/CartContext';
 import Button from '../../components/common/Button';
 import styles from './Checkout.module.css';
@@ -8,7 +10,7 @@ const Checkout = () => {
     const { cartItems, getCartTotal, clearCart } = useCart();
     const navigate = useNavigate();
 
-    const [paymentMethod, setPaymentMethod] = useState('card'); // 'card' or 'cod'
+    const [paymentMethod, setPaymentMethod] = useState('card');
     const [isGiftWrapped, setIsGiftWrapped] = useState(false);
     const GIFT_WRAP_COST = 200;
 
@@ -36,7 +38,6 @@ const Checkout = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Construct Order Object
         const orderData = {
             items: cartItems,
             subtotal,
@@ -52,15 +53,18 @@ const Checkout = () => {
                 postalCode: formData.postalCode
             },
             status: 'Processing',
-            date: new Date()
+            date: new Date().toISOString(),
+            createdAt: new Date()
         };
 
-        // TODO: Save to Firestore (Simulated for now based on previous code, but ready for DB)
-
-        setTimeout(() => {
+        try {
+            await addDoc(collection(db, "orders"), orderData);
             setIsSubmitted(true);
             clearCart();
-        }, 1500);
+        } catch (error) {
+            console.error("Error placing order:", error);
+            alert("Failed to place order. Please try again.");
+        }
     };
 
     if (cartItems.length === 0 && !isSubmitted) {

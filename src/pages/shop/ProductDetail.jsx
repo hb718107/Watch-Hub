@@ -15,7 +15,6 @@ const ProductDetail = () => {
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    // Debug: Fetch all IDs if not found
     const [availableIds, setAvailableIds] = useState([]);
 
     useEffect(() => {
@@ -62,7 +61,6 @@ const ProductDetail = () => {
     }
 
     if (error || !product) {
-        // Check for legacy numeric IDs (Mock Data)
         const isLegacyId = !isNaN(id) && !isNaN(parseFloat(id));
 
         return (

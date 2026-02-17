@@ -64,9 +64,26 @@ const OrderManager = () => {
                         {orders.map(order => (
                             <tr key={order.id}>
                                 <td>{order.id}</td>
-                                <td>{order.customer}</td>
-                                <td>{order.date}</td>
-                                <td>{order.items}</td>
+                                <td>
+                                    {order.shippingDetails ? `${order.shippingDetails.firstName} ${order.shippingDetails.lastName}` : 'Guest'}
+                                    <div style={{ fontSize: '0.8em', color: '#666' }}>{order.shippingDetails?.email}</div>
+                                </td>
+                                <td>{new Date(order.date).toLocaleDateString()}</td>
+                                <td>
+                                    <div style={{ maxHeight: '100px', overflowY: 'auto' }}>
+                                        {Array.isArray(order.items) ? (
+                                            order.items.map((item, index) => (
+                                                <div key={index} style={{ fontSize: '0.9em' }}>
+                                                    {item.quantity}x {item.name}
+                                                </div>
+                                            ))
+                                        ) : (
+                                            <span style={{ color: '#999', fontStyle: 'italic' }}>
+                                                {typeof order.items === 'string' ? order.items : 'No items'}
+                                            </span>
+                                        )}
+                                    </div>
+                                </td>
                                 <td className={styles.price}>{formatCurrency(order.total)}</td>
                                 <td>
                                     <span style={{
