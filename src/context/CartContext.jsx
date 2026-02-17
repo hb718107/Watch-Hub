@@ -10,7 +10,6 @@ export const CartProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState([]);
     const [isCartOpen, setIsCartOpen] = useState(false);
 
-    // Load cart from localStorage on init
     useEffect(() => {
         const savedCart = localStorage.getItem('watchhub_cart');
         if (savedCart) {
@@ -22,7 +21,6 @@ export const CartProvider = ({ children }) => {
         }
     }, []);
 
-    // Save to localStorage whenever cart changes
     useEffect(() => {
         localStorage.setItem('watchhub_cart', JSON.stringify(cartItems));
     }, [cartItems]);

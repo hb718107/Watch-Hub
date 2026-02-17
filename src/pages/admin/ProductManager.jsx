@@ -83,7 +83,6 @@ const ProductManager = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setUploading(true);
-        // Do not block UI with full screen loading, just form specific
 
         try {
             let imageUrl = formData.image;
@@ -99,12 +98,10 @@ const ProductManager = () => {
             };
 
             if (editingId) {
-                // Update
                 const docRef = doc(db, "products", editingId);
                 await updateDoc(docRef, productData);
                 alert("Product updated successfully!");
             } else {
-                // Create
                 await addDoc(collection(db, "products"), productData);
                 alert("Product added successfully!");
             }
