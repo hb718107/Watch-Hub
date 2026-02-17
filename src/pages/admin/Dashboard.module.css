@@ -1,0 +1,153 @@
+.dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.pageTitle {
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    color: var(--color-text);
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.statCard {
+    background-color: var(--color-surface);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.statIcon {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.statLabel {
+    color: var(--color-text-light);
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+}
+
+.statValue {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-text);
+}
+
+.contentGrid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+}
+
+.section {
+    background-color: var(--color-surface);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-border);
+}
+
+.section h3 {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    color: var(--color-text);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.table th {
+    color: var(--color-text-light);
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+
+.table td {
+    color: var(--color-text);
+}
+
+.status {
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.delivered {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+}
+
+.processing {
+    background-color: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+}
+
+.pending {
+    background-color: rgba(249, 115, 22, 0.1);
+    color: #f97316;
+}
+
+.cancelled {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+}
+
+.activityList {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.activityItem {
+    display: flex;
+    gap: 1rem;
+}
+
+.activityDot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    margin-top: 0.4rem;
+}
+
+.activityMessage {
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+    color: var(--color-text);
+}
+
+.activityTime {
+    font-size: 0.75rem;
+    color: var(--color-text-light);
+}
+
+@media (max-width: 1024px) {
+    .contentGrid {
+        grid-template-columns: 1fr;
+    }
+}

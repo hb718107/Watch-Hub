@@ -15,12 +15,12 @@
 }
 
 .primary {
-    background-color: var(--color-primary);
-    color: var(--color-white);
+    background-color: var(--color-btn-bg);
+    color: var(--color-btn-text);
 }
 
 .primary:hover {
-    background-color: var(--color-accent);
+    background-color: var(--color-btn-hover);
 }
 
 .secondary {

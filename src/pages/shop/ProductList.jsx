@@ -1,8 +1,10 @@
 import { useState, useMemo, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { Search, SlidersHorizontal } from 'lucide-react';
+import { useSearchParams, Link } from 'react-router-dom';
+import { Search, SlidersHorizontal, Loader2 } from 'lucide-react';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../../firebase';
 import ProductCard from '../../components/common/ProductCard';
-import { products, categories as categoryData } from '../../data/products';
+import { categories as categoryData } from '../../data/products';
 import styles from './ProductList.module.css';
 
 const ProductList = () => {
@@ -11,6 +13,32 @@ const ProductList = () => {
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [sortOption, setSortOption] = useState('default');
     const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
+
+    // DB State
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    // Fetch Products from Firestore
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const querySnapshot = await getDocs(collection(db, "products"));
+                const productsData = querySnapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+                setProducts(productsData);
+                setLoading(false);
+            } catch (err) {
+                console.error("Error fetching products:", err);
+                setError("Failed to load products. Please try again later.");
+                setLoading(false);
+            }
+        };
+
+        fetchProducts();
+    }, []);
 
     // Sync with URL search param
     useEffect(() => {
@@ -41,7 +69,25 @@ const ProductList = () => {
                 if (sortOption === 'high-low') return b.price - a.price;
                 return 0; // Default order
             });
-    }, [searchTerm, selectedCategory, sortOption]);
+    }, [products, searchTerm, selectedCategory, sortOption]);
+
+    if (loading) {
+        return (
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh' }}>
+                <Loader2 className="spin" size={40} />
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="container" style={{ padding: '4rem', textAlign: 'center', color: 'red' }}>
+                <h2>Something went wrong</h2>
+                <p>{error}</p>
+                <button onClick={() => window.location.reload()} className={styles.clearBtn} style={{ marginTop: '1rem' }}>Retry</button>
+            </div>
+        );
+    }
 
     return (
         <div className={`container ${styles.pageContainer}`}>

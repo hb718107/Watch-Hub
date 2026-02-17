@@ -1,7 +1,8 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { ShoppingBag, Menu, X, Watch, Search, Sun, Moon } from 'lucide-react';
+import { ShoppingBag, Menu, X, Watch, Search, Sun, Moon, User } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { useTheme } from '../../context/ThemeContext';
+import { useAuth } from '../../context/AuthContext';
 import { useState } from 'react';
 import styles from './Navbar.module.css';
 
@@ -9,6 +10,7 @@ const Navbar = () => {
     const { getCartCount, setIsCartOpen } = useCart();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const { theme, toggleTheme } = useTheme();
+    const { user, loginWithGoogle, logout } = useAuth();
     const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate();
 
@@ -59,6 +61,17 @@ const Navbar = () => {
                         {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
                     </button>
 
+                    {user ? (
+                        <div className={styles.userProfile} onClick={() => { if (window.confirm('Logout?')) logout() }}>
+                            <User className={styles.userAvatar} />
+                            <span className={styles.userName}>{user.displayName ? user.displayName.split(' ')[0] : 'User'}</span>
+                        </div>
+                    ) : (
+                        <button onClick={loginWithGoogle} className={styles.loginBtn}>
+                            Sign In
+                        </button>
+                    )}
+
                     <Link
                         to="/cart"
                         className={styles.cartBtn}
@@ -94,8 +107,6 @@ const Navbar = () => {
                         </form>
                     </div>
                     <NavLink to="/" onClick={toggleMobileMenu} className={styles.mobileLink}>Home</NavLink>
-                    <NavLink to="/products" onClick={toggleMobileMenu} className={styles.mobileLink}>Collection</NavLink>
-                    <NavLink to="/about" onClick={toggleMobileMenu} className={styles.mobileLink}>Our Story</NavLink>
                 </div>
             )}
         </nav>

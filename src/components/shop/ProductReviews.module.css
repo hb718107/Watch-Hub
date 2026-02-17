@@ -1,0 +1,104 @@
+.container {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+}
+
+.sectionTitle {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-text);
+}
+
+.summary {
+    margin-bottom: 2rem;
+}
+
+.averageRating {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ratingNumber {
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--color-text);
+    line-height: 1;
+}
+
+.stars {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.reviewCount {
+    color: var(--color-text-light);
+    font-size: 0.875rem;
+}
+
+.reviewsList {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.reviewCard {
+    background-color: var(--color-surface);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-border);
+}
+
+.reviewHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.userInfo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    background-color: var(--color-secondary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.userName {
+    font-weight: 500;
+    color: var(--color-text);
+}
+
+.reviewDate {
+    font-size: 0.875rem;
+    color: var(--color-text-light);
+}
+
+.reviewRating {
+    display: flex;
+    gap: 0.125rem;
+    margin-bottom: 0.75rem;
+}
+
+.reviewComment {
+    color: var(--color-text-light);
+    line-height: 1.6;
+}
+
+.noReviews {
+    text-align: center;
+    color: var(--color-text-light);
+    font-style: italic;
+    padding: 2rem;
+}

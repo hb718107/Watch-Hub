@@ -1,12 +1,37 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { collection, query, where, limit, getDocs } from 'firebase/firestore';
+import { db } from '../firebase';
 import Button from '../components/common/Button';
 import ProductCard from '../components/common/ProductCard';
 import WatchClock from '../components/common/WatchClock';
-
-import { products, categories } from '../data/products';
+import { categories as staticCategories } from '../data/products'; // Fallback or use DB
 
 const Home = () => {
-    const featuredProducts = products.filter(p => p.isNew).slice(0, 4);
+    const [featuredProducts, setFeaturedProducts] = useState([]);
+
+    useEffect(() => {
+        const fetchFeatured = async () => {
+            try {
+                const q = query(
+                    collection(db, "products"),
+                    where("isNew", "==", true),
+                    limit(4)
+                );
+                const querySnapshot = await getDocs(q);
+                const products = querySnapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+                setFeaturedProducts(products);
+            } catch (error) {
+                console.error("Error fetching featured products:", error);
+            }
+        };
+
+        fetchFeatured();
+    }, []);
+
     return (
         <div className="home-page fade-in">
             {/* Hero Section */}
@@ -85,12 +110,12 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* Categories Section - Placeholder for now or simple implementation */}
-            <section style={{ backgroundColor: '#f9f9f9', padding: '6rem 1rem' }}>
+            {/* Categories Section */}
+            <section style={{ backgroundColor: 'var(--color-surface)', padding: '6rem 1rem' }}>
                 <div className="container">
                     <h2 className="text-center" style={{ marginBottom: '3rem' }}>Browse by Category</h2>
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem' }}>
-                        {categories.map(cat => (
+                        {staticCategories.map(cat => (
                             <Link key={cat.id} to={`/products?category=${cat.name}`} style={{
                                 height: '250px',
                                 position: 'relative',

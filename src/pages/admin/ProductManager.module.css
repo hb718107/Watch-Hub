@@ -1,0 +1,168 @@
+.container {
+    padding: 1rem;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.title {
+    font-size: 1.8rem;
+    color: var(--color-text);
+}
+
+.addButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.addButton:hover {
+    opacity: 0.9;
+}
+
+.tableContainer {
+    background-color: var(--color-surface);
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.table th {
+    background-color: rgba(0, 0, 0, 0.02);
+    color: var(--color-text-light);
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.table td {
+    color: var(--color-text);
+    vertical-align: middle;
+}
+
+.productImage {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 4px;
+    background-color: #f3f4f6;
+}
+
+.price {
+    font-family: monospace;
+    font-weight: 500;
+}
+
+.actionBtn {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    color: var(--color-text-light);
+    transition: color 0.2s;
+    border-radius: 4px;
+}
+
+.actionBtn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--color-primary);
+}
+
+.deleteBtn:hover {
+    color: #ef4444;
+    background-color: rgba(239, 68, 68, 0.1);
+}
+
+.formContainer {
+    background-color: var(--color-surface);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-border);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.formGroup {
+    margin-bottom: 1.5rem;
+}
+
+.label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--color-text-light);
+    font-size: 0.875rem;
+}
+
+.input,
+.textarea,
+.select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-size: 1rem;
+}
+
+.textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.formActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.cancelBtn {
+    background: none;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.submitBtn {
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.loading {
+    text-align: center;
+    padding: 4rem;
+    color: var(--color-text-light);
+}

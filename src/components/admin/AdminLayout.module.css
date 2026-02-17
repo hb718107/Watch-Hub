@@ -1,0 +1,122 @@
+.adminContainer {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--color-background);
+    color: var(--color-text);
+}
+
+.sidebar {
+    width: 260px;
+    background-color: var(--color-surface);
+    border-right: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    position: fixed;
+    height: 100vh;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 3rem;
+    color: var(--color-primary);
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.navItem {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    color: var(--color-text-light);
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.navItem:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--color-text);
+}
+
+.active {
+    background-color: var(--color-primary);
+    color: white !important;
+}
+
+.footer {
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.logoutBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    color: #ef4444;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    font-size: 1rem;
+}
+
+.logoutBtn:hover {
+    background-color: rgba(239, 68, 68, 0.1);
+}
+
+.backLink {
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--color-text-light);
+    text-decoration: underline;
+}
+
+.mainContent {
+    flex: 1;
+    margin-left: 260px;
+    /* Width of sidebar */
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 60px;
+        padding: 1rem 0.5rem;
+    }
+
+    .logo span,
+    .navItem span,
+    .footer span,
+    .backLink {
+        display: none;
+    }
+
+    .navItem,
+    .logoutBtn {
+        justify-content: center;
+        padding: 0.75rem;
+    }
+
+    .mainContent {
+        margin-left: 60px;
+        padding: 1rem;
+    }
+}
